@@ -1,0 +1,59 @@
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+  mvc:
+    throw-exception-if-no-handler-found: true
+    #static-path-pattern: /static/**
+  datasource:
+    platform: mysql
+    # 下面为连接池的补充设置，应用到上面所有数据源中
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://ip:3306/demo?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      username: root
+      password: 123456
+      # 初始化大小，最小，最大
+      initialSize: 2
+      minIdle: 5
+      maxActive: 20
+      # 配置获取连接等待超时的时间
+      maxWait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      timeBetweenEvictionRunsMillis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      minEvictableIdleTimeMillis: 30000
+      validationQuery: select 1 from dual
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: true
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      filters: stat,wall  #slf4j
+      # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      stat-view-servlet:
+        login-username: admin
+        login-password: password
+        allow: "*"
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: true
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: "*.gif,*.png,*.jpg,*.html,*.js,*.css,*.ico,/druid/*"
+      aop-patterns: com.example.demo.*.service.*
+
+# 数据持久层框架 ibeetlsql 配置
+beetlsql: sqlManager
+beetlsql.sqlManager:
+  basePackage: com.example.demo
+  ds: dataSource #默认使用druid连接池, 也可以自定义例如 myDataSource1
+  daoSuffix: Dao
+  dbStyle: com.example.demo.config.BeetlSqlStyle
+  nameConversion: org.beetl.sql.core.UnderlinedNameConversion
+  dev: true
