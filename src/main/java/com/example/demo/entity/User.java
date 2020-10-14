@@ -25,9 +25,10 @@ public class User {
     @AutoID
     private Integer id;
     private String name;
-    private int departmentId;
-//    @UpdateTime
+    private Integer departmentId;
     private Date createTime;
+    @UpdateTime
+    private Date lastModified;
 
     @UpdateIgnore
     @InsertIgnore
@@ -36,6 +37,6 @@ public class User {
 
     @UpdateIgnore
     @InsertIgnore
-    @FetchSql("SELECT `name` FROM sys_user WHERE department_id = #{departmentId}")
+    @FetchSql("SELECT `name` FROM sys_user WHERE department_id = #departmentId#")
     private String userName;
 }

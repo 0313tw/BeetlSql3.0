@@ -24,6 +24,16 @@ public class UserController {
     public User add(@RequestBody User user){
         return userService.add(user);
     }
+
+    @GetMapping("/user/{id}/sql")
+    public User getSql(@PathVariable("id") Integer id){
+        return userService.getOfSql(id);
+    }
+
+    @PutMapping("/user")
+    public User updateOnly(@RequestBody User user){
+        return userService.updateOnly(user);
+    }
     @Resource
     private UserService userService;
 }
