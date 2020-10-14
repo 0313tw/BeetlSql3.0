@@ -10,7 +10,7 @@ spring:
     # 下面为连接池的补充设置，应用到上面所有数据源中
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      url: jdbc:mysql://ip:3306/demo?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
+      url: jdbc:mysql://127.0.0.1:3306/demo?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8
       driver-class-name: com.mysql.cj.jdbc.Driver
       username: root
       password: 123456
