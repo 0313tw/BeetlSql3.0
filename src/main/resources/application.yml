@@ -53,7 +53,7 @@ beetlsql: sqlManager
 beetlsql.sqlManager:
   basePackage: com.example.demo
   ds: dataSource #默认使用druid连接池, 也可以自定义例如 myDataSource1
-  daoSuffix: Dao
+  daoSuffix: Mapper
   dbStyle: com.example.demo.config.BeetlSqlStyle
   nameConversion: org.beetl.sql.core.UnderlinedNameConversion
   dev: true

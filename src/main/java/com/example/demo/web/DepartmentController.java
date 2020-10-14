@@ -32,7 +32,7 @@ public class DepartmentController {
         return depService.update(department);
     }
 
-    @DeleteMapping("/dep")
+    @DeleteMapping("/dep/{id}")
     public void delete(@PathVariable("id") Integer id) {
         depService.delete(id);
     }
@@ -49,15 +49,15 @@ public class DepartmentController {
     }
 
     @GetMapping("/dep/tmp")
-    public List<Department> getTmp(@RequestParam(value = "id", required = false) Integer id){
+    public List<Department> getTmp(@RequestParam(value = "id", required = false) Integer id) {
         return depService.getOfTemp(id);
     }
 
     @GetMapping("/dep/find/tmp")
-    public PageResult<Department> findTmp(@RequestParam(value = "id",required = false) Integer id,
+    public PageResult<Department> findTmp(@RequestParam(value = "id", required = false) Integer id,
                                           @RequestParam(value = "name", required = false) String name,
-            @RequestParam("size") Integer pageSize, @RequestParam("number") Integer pageNumber){
-        return depService.findOfTemp(id,name, pageSize, pageNumber);
+                                          @RequestParam("size") Integer pageSize, @RequestParam("number") Integer pageNumber) {
+        return depService.findOfTemp(id, name, pageSize, pageNumber);
     }
 
     @Resource

@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.User;
+import org.beetl.sql.core.page.PageResult;
 
 /**
  * Author: 陈艺博
@@ -34,4 +35,6 @@ public interface UserService {
      * 更新对象属性
      */
     User update(User user);
+
+    PageResult<User> find(Integer pageSize, Integer pageNumber);
 }
